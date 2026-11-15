@@ -1,0 +1,10 @@
+# Session 2 Reflection
+
+### Q1. How do Issues and pull requests together support change control?
+An Issue establishes the formal reason for a change by documenting the problem context, expected outcome, and checkable acceptance criteria before any code is written. A pull request then proposes the exact branch commits intended to solve that Issue and provides a dedicated space for peer review and discussion prior to merging into `main`. By linking the pull request to the Issue using closing keywords like `Closes #1` and commit references like `refs #1`, the repository maintains an end-to-end audit trail connecting the initial requirement to the reviewed and merged code.
+
+### Q2. Why did the conflict in Part 4 happen, and how could a team reduce such conflicts?
+The merge conflict in Part 4 occurred because `branch-a` and `branch-b` diverged from the same base commit on `main` and both modified the exact same line in `session2/conflict-demo.md` with different values (`staging` versus `production`). When `branch-b` was merged after `branch-a`, Git could not automatically determine which change should take precedence and paused the merge for human resolution. A software team can reduce these conflicts by keeping feature branches short-lived, pulling updates from `main` frequently, and coordinating tasks through Issues so multiple developers avoid editing the same lines of a file simultaneously.
+
+### Q3. What would be lost if people merged straight into main without a pull request?
+If developers merged or pushed directly into `main` without opening a pull request, the team would lose the peer review checkpoint that catches bugs, formatting mistakes, or accidentally committed secrets before they affect the stable codebase. Furthermore, the project would lose the documented discussion history, review approvals, and automated links between code changes and their corresponding Issues. Without that governance layer, maintaining a reliable, auditable `main` branch becomes difficult because unverified changes can silently break the build for everyone else.
